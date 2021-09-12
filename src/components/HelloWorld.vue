@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>HelloWorld</h1>
+    <div class="hello-div">111</div>
+    <el-button >改变msg</el-button>
   </div>
 </template>
 
@@ -9,26 +11,40 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'HelloWorld',
-  props: {
-    msg: String,
+  /* props: {
+    msg:{
+      type: Object,
+    }
+  }, */
+  /* data(){
+    return {
+      fake_msg: this.msg,
+    }
   },
+  methods:{
+    changeMsg(){
+      this.fake_msg.name = 'ljw真帅'
+    }
+  } */
+  /* setup(props){
+    const _msg = reactive(props.msg);
+    const changeMsg = () => {
+      _msg.name = "ljw真帅"
+    }
+    //const { msg } = toRefs(props);
+    return {
+      _msg,
+      changeMsg,
+    }
+  } */
 });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+<style scoped lang="less">
+.hello{
+  &-div{
+    background: darkcyan;
+  }
 }
 </style>
