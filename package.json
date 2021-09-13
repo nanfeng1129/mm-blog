@@ -9,6 +9,7 @@
     "start": "npm run serve"
   },
   "dependencies": {
+    "@element-plus/icons": "0.0.11",
     "element-plus": "^1.1.0-beta.8",
     "particles.vue3": "^1.17.0",
     "vue": "^3.2.8",

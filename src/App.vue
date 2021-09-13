@@ -8,14 +8,13 @@
         >
         </Particles>
         <div class="app-div">
-          <router-view/>
+          <router-view />
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-
 export default defineComponent({
   setup() {
     const options = reactive({
@@ -116,15 +115,21 @@ export default defineComponent({
   padding: 0;
   margin: 0;
 }
+html{
+  font-size: 62.5%;
+}
 #app {
   text-align: center;
   .app-div{
+    width: 80%;
+   //min-width: 1500px;
+    margin: 0 10%;
     position: relative;
     color: white;
   }
   #tsparticles{
     position: fixed;
-    //height: 100vh;
+    height: 100vh;
     width:100%;
   }
   #tsparticles:-webkit-scrollbar-thumb{
@@ -136,6 +141,8 @@ export default defineComponent({
 @color-accent: #fafafa;
 @color-background-primary: @color-accent;
 body::-webkit-scrollbar {
+  // width: 1px;
+  // height: 1px;
   width: @scrollbar-width;
   height: @scrollbar-width;
 }
@@ -145,9 +152,11 @@ body::-webkit-scrollbar-button {
 body::-webkit-scrollbar-thumb {
   width: @scrollbar-width;
   border-radius: @scrollbar-width;
-  background: @color-primary;
+  background-color: #acb3c7;
+  //background: @color-primary;
 }
 body::-webkit-scrollbar-track {
+  //background-color: transparent;
   background: @color-background-primary;
 }
 body::-webkit-scrollbar-corner {
