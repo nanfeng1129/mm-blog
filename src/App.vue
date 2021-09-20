@@ -7,7 +7,7 @@
             :options="options"
         >
         </Particles>
-        <div class="app-div">
+        <div class="app-router-view">
           <router-view />
         </div>
     </div>
@@ -21,6 +21,7 @@ export default defineComponent({
         background: {
             color: {
                 value: '#717684'
+                //value: '#cecece'
             },
             //size: 'cover',
             position: '50%, 50%'
@@ -111,16 +112,19 @@ export default defineComponent({
 </script>
 
 <style lang="less">
+@import './styles/common';
 *{
   padding: 0;
   margin: 0;
 }
+
+//html原始字体大小为16px；这里定义html文字大小为10px；其余文件字体大小全都按照rem定义；
 html{
   font-size: 62.5%;
 }
 #app {
   text-align: center;
-  .app-div{
+  .app-router-view{
     width: 80%;
    //min-width: 1500px;
     margin: 0 10%;
@@ -136,10 +140,6 @@ html{
     background-color: #F90;
   }
 }
-@scrollbar-width: 8px;
-@color-primary: #da7a85;
-@color-accent: #fafafa;
-@color-background-primary: @color-accent;
 body::-webkit-scrollbar {
   // width: 1px;
   // height: 1px;
