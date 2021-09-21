@@ -33,14 +33,36 @@
             </div>
         </div>
         <div class="left-affix">
-            <el-affix position="top" offset="20">
+            <el-affix position="top" offset="10">
                 <div class="left-affix-content">
                     <div class="left-affix-content-avatar">
                         <el-avatar :size="130" :src="AvatarPic"></el-avatar>
                         <div class="left-affix-content-text">Ryan_m</div>
                     </div>
                     <div class="left-affix-content-classification">
-
+                        <div class="left-affix-content-classification-div">
+                            <div class="left-affix-content-classification-number">11</div>
+                            <div class="left-affix-content-classification-text">日志</div>
+                        </div>
+                        <div class="left-affix-content-classification-div">
+                            <div class="left-affix-content-classification-number">11</div>
+                            <div class="left-affix-content-classification-text">分类</div>
+                        </div>
+                        <div class="left-affix-content-classification-div">
+                            <div class="left-affix-content-classification-number">61</div>
+                            <div class="left-affix-content-classification-text">标签</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="left-affix-content-icon">
+                            <el-icon style="top: 3px;">
+                                <Link />
+                            </el-icon>
+                            Links
+                        </div>
+                        <div>
+                            <el-link :underline="false" :href="href" target="_blank" style="border-bottom: 1px solid rgba(0, 0, 0, .3)">mmBlog's github</el-link>
+                        </div>
                     </div>
                 </div>
             </el-affix>
@@ -49,7 +71,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { HomeFilled, CollectionTag, Collection, Search } from '@element-plus/icons';
+import { HomeFilled, CollectionTag, Collection, Search, Link } from '@element-plus/icons';
 import AvatarPic from '../assets/avatar.jpg'
 export default defineComponent({
     components:{
@@ -57,11 +79,13 @@ export default defineComponent({
         CollectionTag,
         Collection,
         Search,
+        Link,
     },
     data(){
         return {
             isActive: [true, false, false, false],
             AvatarPic,
+            href: 'https://github.com/nanfeng1129/mm-blog'
         }
     },
     methods: {
@@ -132,7 +156,7 @@ export default defineComponent({
     }
     &-affix{
         background: #fff;
-        margin-top: 20px;
+        margin-top: @margin-primary;
         &-content{
             text-align: center;
             padding: 30px 0;
@@ -141,6 +165,33 @@ export default defineComponent({
                 font-size: @content-font-size;
                 font-weight: 700;
                 color: rgba(0, 0, 0, .8);
+            }
+            &-classification{
+                color: rgba(0, 0, 0, .8);
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                &-number{
+                    font-size: @content-font-size;
+                }
+                &-text{
+                    margin-top: 5px;
+                    font-size: @small-font-size;
+                }
+                &-div{
+                    user-select: none;
+                    cursor: pointer;
+                    padding-right: 10px;
+                    margin-right: 10px;
+                    border-right: 1px solid rgba(0, 0, 0, .1);
+                }
+            }
+            &-icon{
+                margin-top: 10px;
+                color: rgba(0, 0, 0, .7);
+                font-size: @small-font-size;
+                font-weight: bold;
+                margin-bottom: 10px;
             }
         }
     }
