@@ -2,7 +2,7 @@ module.exports = {
     productionSourceMap: false,
     publicPath:'/',
     devServer: {
-        port: '9999',
+        port: '9000',
         hot: true,
         proxy: {
             'api': {
