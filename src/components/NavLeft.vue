@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="left-affix">
-            <el-affix position="top" offset="10">
+            <el-affix position="top" :offset="15">
                 <div class="left-affix-content">
                     <div class="left-affix-content-avatar">
                         <el-avatar :size="130" :src="AvatarPic"></el-avatar>
@@ -98,14 +98,38 @@ export default defineComponent({
                     this.isActive[i] = false;
                 }
             }
+            if(index === 0){
+                this.$router.push('/')
+            }
         }
+    },
+    created(){
+        function testAwait(){
+            return Promise.resolve('testAwait');
+        }
+        async function helloAsync(){
+            testAwait().then((val) => {
+                console.log('then里', val);
+            }, (err) => {
+                console.log('catch里：', err);
+            })
+            console.log("123后");
+        }
+        helloAsync();
+        /* const p1 :Promise<string> = new Promise((resolve, reject) => {
+            resolve('helloWorld');
+        })
+        p1.then(val => {
+            console.log(val);
+        }) */
+        console.log('后面的123');
     }
 })
 </script>
 <style lang="less" scoped>
 @import '../styles/common';
 .left{
-    width: 20%;
+    width: 100%;
     &-title{
         &-top{
             padding: 20px;
@@ -155,9 +179,10 @@ export default defineComponent({
         }
     }
     &-affix{
-        background: #fff;
+        //background: #fff;
         margin-top: @margin-primary;
         &-content{
+            background: #fff;
             text-align: center;
             padding: 30px 0;
             &-text{
