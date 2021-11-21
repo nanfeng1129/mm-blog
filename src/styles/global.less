@@ -17,3 +17,31 @@ img{
     transform: translate(-50%);
     //max-height: 450px;
 }
+a{
+    text-decoration: none;
+    position: relative;
+}
+a::after{
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #555;
+    transition: all 0.5s ease-out;
+}
+a:hover{
+    opacity: 1;
+}
+a:link {color: #555} /* 未被访问的链接 蓝色 */
+a:visited {color: #555} /* 已被访问过的链接 蓝色 */
+a:hover {color: #555; opacity: 1;} /* 鼠标悬浮在上的链接 蓝色 */
+a:hover::after{
+    left: 0;
+    width: 100%;
+    transition: all 0.5s ease-out;
+}
+a:active {color: #555} /* 鼠标点中激活链接 蓝色 */
+
+

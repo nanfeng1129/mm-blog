@@ -24,9 +24,33 @@ const routes: Array<RouteRecordRaw> = [
             name: 'detail',
             component: () => import('../components/Content.vue'),
             meta: {
-                title: 'detail'
+                title: 'detail',
             }
-        }
+        },
+        {
+            path: 'tagAll',
+            name: 'tagAll',
+            component: () => import('../views/tagAll.vue'),
+            meta: {
+                title: '标签',
+            }
+        },
+        {
+            path: 'classAll',
+            name: 'classAll',
+            component: () => import('../views/classAll.vue'),
+            meta: {
+                title: '类别',
+            }
+        },
+        {
+            path: 'stamp',
+            name: 'stamp',
+            component: () => import('../views/timeStamp.vue'),
+            meta: {
+                title: '时间戳',
+            }
+        },
     ]
   },
   /* {

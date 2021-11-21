@@ -6,25 +6,25 @@
                 <div class="left-title-top-h2">努力爬</div>
             </div>
             <div class="left-title-menu">
-                <div class="left-title-menu-index" :class="{active: isActive[0]}" @click="changeIsActive(0)">
+                <div class="left-title-menu-index" :class="{active: isActive[0]}" @click="changeIsActive(0); jumpTo('/')">
                     <el-icon style="top: 2px">
                         <home-filled />
                     </el-icon>
                     <span style="margin-left: 10px">首页</span>
                 </div>
-                <div class="left-title-menu-index" :class="{active: isActive[1]}" @click="changeIsActive(1)">
+                <div class="left-title-menu-index" :class="{active: isActive[1]}" @click="changeIsActive(1); jumpTo('/tagAll')">
                     <el-icon style="top: 2px">
                         <collection-tag />
                     </el-icon>
                     <span style="margin-left: 10px">标签</span>
                 </div>
-                <div class="left-title-menu-index" :class="{active: isActive[2]}" @click="changeIsActive(2)">
+                <div class="left-title-menu-index" :class="{active: isActive[2]}" @click="changeIsActive(2); jumpTo('/classAll')">
                     <el-icon style="top: 2px">
                         <collection />
                     </el-icon>
                     <span style="margin-left: 10px">分类</span>
                 </div>
-                <div class="left-title-menu-index" :class="{active: isActive[3]}" @click="changeIsActive(3)">
+                <div class="left-title-menu-index" :class="{active: isActive[3]}" @click="changeIsActive(3); jumpTo('/search')">
                     <el-icon style="top: 2px">
                         <search />
                     </el-icon>
@@ -98,31 +98,39 @@ export default defineComponent({
                     this.isActive[i] = false;
                 }
             }
-            if(index === 0){
-                this.$router.push('/')
-            }
+        },
+        jumpTo(url: string){
+            this.$router.push(url);
+        }
+    },
+    watch:{
+        $route:{
+            handler({ path }){
+                if(path === '/index' || path === '/detail'){
+                    this.changeIsActive(0);
+                }else if(path === '/tagAll'){
+                    this.changeIsActive(1);
+                }else if(path === '/classAll'){
+                    this.changeIsActive(2);
+                }else if(path === '/search'){
+                    this.changeIsActive(3);
+                }
+            },
+            deep: true
         }
     },
     created(){
-        function testAwait(){
-            return Promise.resolve('testAwait');
+        console.log("查看$route：", this.$route);
+        let path = this.$route.path;
+        if(path === '/index' || path === '/detail'){
+            this.changeIsActive(0);
+        }else if(path === '/tagAll'){
+            this.changeIsActive(1);
+        }else if(path === '/classAll'){
+            this.changeIsActive(2);
+        }else if(path === '/search'){
+            this.changeIsActive(3);
         }
-        async function helloAsync(){
-            testAwait().then((val) => {
-                console.log('then里', val);
-            }, (err) => {
-                console.log('catch里：', err);
-            })
-            console.log("123后");
-        }
-        helloAsync();
-        /* const p1 :Promise<string> = new Promise((resolve, reject) => {
-            resolve('helloWorld');
-        })
-        p1.then(val => {
-            console.log(val);
-        }) */
-        console.log('后面的123');
     }
 })
 </script>

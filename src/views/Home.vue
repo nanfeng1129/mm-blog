@@ -4,15 +4,17 @@
             <nav-left />
         </div>
         <div class="home-right">
-            <router-view></router-view>
+            <router-view v-slot="{ Component }">
+                <transition name="el-fade-in" :duration="500" mode="out-in">
+                    <component :is="Component" />
+                </transition>
+            </router-view>
         </div>
     </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
 import NavLeft from '@/components/NavLeft.vue'
-import { axiosPost } from '../utils/util'
-import { AXIOS_RES, RESP_CODE } from '../config/config'
 
 export default defineComponent({
     components:{

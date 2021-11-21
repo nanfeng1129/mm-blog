@@ -16,10 +16,8 @@ import axios from 'axios'
 
 export function axiosGet(url: string, params?: any): any{
     return axios.get(`/api${url}`, { params });
-    //return axios.get(`${url}`, { params });
 }
 
 export function axiosPost(url: string, data?: any): any{
    return axios.post(`/api${url}`, data);
-   //return axios.post(`${url}`, data);
 }

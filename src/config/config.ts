@@ -26,3 +26,23 @@ export interface AXIOS_RES {
     config: AXIOS_CONFIG_TYPE;
     request?: any;
 }
+
+export interface PARAMS {
+    pageNo: number;
+    pageSize: number;
+    title?: string;
+    create_time_start?: string;
+    create_time_end?: string;
+    update_time_start?: string;
+    update_time_end?: string;
+}
+
+export interface TEXT {
+    mdId: number;
+    title: string;
+    content: string;
+    create_time: string;
+    update_time: string;
+    tag: string;
+    classification: string;
+}

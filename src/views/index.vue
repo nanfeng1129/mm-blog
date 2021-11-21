@@ -2,6 +2,7 @@
     <div class="index">
         <div v-for="(item, index) in textList" :key="index" class="index-text">
             <h2 class="index-text-title">{{item.title}}</h2>
+            <!-- <button id="demo">按钮</button> -->
             <v-md-preview :text="item.content" class="index-text-md" height="300px"></v-md-preview>
             <div class="index-text-button" @click="jumpToDetail(item)">阅读全文>></div>
         </div>
@@ -12,7 +13,7 @@
                 :total="pagination.total"
                 @current-change="handleCurrentChange"
                 layout="prev, pager, next, jumper"
-                background="#ccc"
+                :background="true"
             >
             </el-pagination>
         </div>
@@ -138,6 +139,16 @@ export default defineComponent({
         margin-bottom: @margin-primary;
         //z-index: 1000;
     }
+}
+#demo{
+    width: 80px;
+    height: 50px;
+    background: #da7a85;
+    border: 0px;
+    color: white;
+}
+#demo:hover{
+    opacity: .6;
 }
 
 </style>

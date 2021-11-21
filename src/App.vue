@@ -1,14 +1,19 @@
 <template>
     <div id="app" class="app">
+        <!-- particles中的属性，暂时未用到，先在这里记录，以免警告 
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded" -->
         <Particles
             id="tsparticles"
-            :particlesInit="particlesInit"
-            :particlesLoaded="particlesLoaded"
             :options="options"
         >
         </Particles>
         <div class="app-router-view">
-          <router-view />
+            <router-view v-slot="{ Component }">
+                <transition name="el-zoom-in-center" :duration="300" mode="out-in">
+                    <component :is="Component" />
+                </transition>
+            </router-view>
         </div>
     </div>
 </template>
@@ -76,12 +81,14 @@ export default defineComponent({
             move: {
                 direction: 'none',
                 enable: true,
+                //enable: false,
                 outMode: 'out',
                 random: false,
                 speed: 2,
                 straight: false,
                 attack:{
-                  enable: true
+                  //enable: true
+                  enable: false
                 }
             },
             number: {
@@ -140,26 +147,32 @@ html{
     background-color: #F90;
   }
 }
-body::-webkit-scrollbar {
+html{
+    overflow: hidden;
+}
+html:hover{
+    overflow: overlay;
+}
+html::-webkit-scrollbar {
   // width: 1px;
   // height: 1px;
   width: @scrollbar-width;
   height: @scrollbar-width;
 }
-body::-webkit-scrollbar-button {
+html::-webkit-scrollbar-button {
   display: none;
 }
-body::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   width: @scrollbar-width;
   border-radius: @scrollbar-width;
   background-color: #acb3c7;
   //background: @color-primary;
 }
-body::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   //background-color: transparent;
   background: @color-background-primary;
 }
-body::-webkit-scrollbar-corner {
+html::-webkit-scrollbar-corner {
   background: @color-background-primary;
 }
 
