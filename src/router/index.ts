@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw, RouteLocationNormalized } from 'vue-router'
-import Home from '../views/home.vue'
+import Home from '../views/Home.vue'
 //import Home from '../components/NavLeft.vue'
 const routes: Array<RouteRecordRaw> = [
   {
