@@ -62,6 +62,7 @@ export default defineComponent({
     },
     methods: {
         handleCurrentChange(current: number){
+            this.pagination.current = current;
             let params = {
                 ...this.params,
                 pageNo: current

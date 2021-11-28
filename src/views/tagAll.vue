@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { axiosPost } from '../utils/util'
-import { AXIOS_RES } from '../config/config'
+import { AXIOS_RES, RESP_CODE } from '../config/config'
 
 interface Tag {
     tag: string;
@@ -33,7 +33,7 @@ export default defineComponent({
     },
     created(){
         axiosPost('/portal/tagAll').then((res: AXIOS_RES) => {
-            if(res.data.code === '0'){
+            if(res.data.code === RESP_CODE.SUCCESS){
                 this.tagList = res.data.data.dataList;
                 this.total = res.data.data.total;
             }else{

@@ -40,16 +40,16 @@
                         <div class="left-affix-content-text">Ryan_m</div>
                     </div>
                     <div class="left-affix-content-classification">
-                        <div class="left-affix-content-classification-div">
-                            <div class="left-affix-content-classification-number">11</div>
+                        <div class="left-affix-content-classification-div" @click="jumpTo('/')">
+                            <div class="left-affix-content-classification-number">{{blogNum}}</div>
                             <div class="left-affix-content-classification-text">日志</div>
                         </div>
-                        <div class="left-affix-content-classification-div">
-                            <div class="left-affix-content-classification-number">11</div>
+                        <div class="left-affix-content-classification-div" @click="jumpTo('/classAll')">
+                            <div class="left-affix-content-classification-number">{{classNum}}</div>
                             <div class="left-affix-content-classification-text">分类</div>
                         </div>
-                        <div class="left-affix-content-classification-div">
-                            <div class="left-affix-content-classification-number">61</div>
+                        <div class="left-affix-content-classification-div" @click="jumpTo('/tagAll')">
+                            <div class="left-affix-content-classification-number">{{tagNum}}</div>
                             <div class="left-affix-content-classification-text">标签</div>
                         </div>
                     </div>
@@ -73,6 +73,9 @@
 import { defineComponent } from 'vue';
 import { HomeFilled, CollectionTag, Collection, Search, Link } from '@element-plus/icons';
 import AvatarPic from '../assets/avatar.jpg'
+import { axiosPost } from '../utils/util'
+import { AXIOS_RES, RESP_CODE } from '../config/config'
+
 export default defineComponent({
     components:{
         HomeFilled,
@@ -85,7 +88,10 @@ export default defineComponent({
         return {
             isActive: [true, false, false, false],
             AvatarPic,
-            href: 'https://github.com/nanfeng1129/mm-blog'
+            href: 'https://github.com/nanfeng1129/mm-blog',
+            tagNum: 0,
+            classNum: 0,
+            blogNum:0,
         }
     },
     methods: {
@@ -120,7 +126,6 @@ export default defineComponent({
         }
     },
     created(){
-        console.log("查看$route：", this.$route);
         let path = this.$route.path;
         if(path === '/index' || path === '/detail'){
             this.changeIsActive(0);
@@ -131,6 +136,30 @@ export default defineComponent({
         }else if(path === '/search'){
             this.changeIsActive(3);
         }
+        axiosPost('/portal/classAll').then((res: AXIOS_RES) => {
+            if(res.data.code === RESP_CODE.SUCCESS){
+                this.classNum = res.data.data.total;
+            }else{
+                this.classNum = 0;
+            }
+        })
+        axiosPost('/portal/tagAll').then((res: AXIOS_RES) => {
+            if(res.data.code === RESP_CODE.SUCCESS){
+                this.tagNum = res.data.data.total;
+            }else{
+                this.tagNum = 0;
+            }
+        })
+        axiosPost('/portal/query', {
+                pageNo: 1,
+                pageSize: 10,
+            }).then((res: AXIOS_RES) => {
+            if(res.data.code === RESP_CODE.SUCCESS){
+                this.blogNum = res.data.data.total
+            }else{
+                this.blogNum = 0
+            }
+        })
     }
 })
 </script>
