@@ -1,40 +1,43 @@
 <template>
-    <div class="stamp">
-        <el-timeline>
-            <el-timeline-item placement="top" :hide-timestamp="true">
-                <div class="stamp-title">{{type === 'tag' ? `标签：${prop}` : `类别：${prop}`}}</div>
-            </el-timeline-item>
-            <el-timeline-item v-for="(item, index) in stampList" :key="index" :timestamp="item.update_time" placement="top">
-                <el-card class="stamp-card" @click="jumpToDetail(item)">
-                    <h2>{{item.title}}</h2>
-                    <h5>创建时间：{{item.create_time}}</h5>
-                </el-card>
-            </el-timeline-item>
-            <!-- <el-timeline-item timestamp="2018/4/3" placement="top">
-                <el-card>
-                    <h4>Update Github template</h4>
-                    <p>Tom committed 2018/4/3 20:46</p>
-                </el-card>
-            </el-timeline-item>
-            <el-timeline-item timestamp="2018/4/2" placement="top">
-                <el-card>
-                    <h4>Update Github template</h4>
-                    <p>Tom committed 2018/4/2 20:46</p>
-                </el-card>
-            </el-timeline-item> -->
-        </el-timeline>
+    <div>
+        <div class="stamp">
+            <el-timeline>
+                <el-timeline-item placement="top" :hide-timestamp="true">
+                    <div class="stamp-title">{{type === 'tag' ? `标签：${prop}` : `类别：${prop}`}}</div>
+                </el-timeline-item>
+                <el-timeline-item v-for="(item, index) in stampList" :key="index" :timestamp="item.update_time" placement="top">
+                    <el-card class="stamp-card" @click="jumpToDetail(item)">
+                        <h2>{{item.title}}</h2>
+                        <h5>创建时间：{{item.create_time}}</h5>
+                    </el-card>
+                </el-timeline-item>
+                <!-- <el-timeline-item timestamp="2018/4/3" placement="top">
+                    <el-card>
+                        <h4>Update Github template</h4>
+                        <p>Tom committed 2018/4/3 20:46</p>
+                    </el-card>
+                </el-timeline-item>
+                <el-timeline-item timestamp="2018/4/2" placement="top">
+                    <el-card>
+                        <h4>Update Github template</h4>
+                        <p>Tom committed 2018/4/2 20:46</p>
+                    </el-card>
+                </el-timeline-item> -->
+            </el-timeline>
+        </div>
+        <div class="index-pagination">
+            <el-pagination
+                v-model:current-page="pagination.current"
+                :page-size="pagination.pageSize"
+                :total="pagination.total"
+                @current-change="handleCurrentChange"
+                layout="prev, pager, next, jumper"
+                :background="true"
+            >
+            </el-pagination>
+        </div>
     </div>
-    <div class="index-pagination">
-        <el-pagination
-            v-model:current-page="pagination.current"
-            :page-size="pagination.pageSize"
-            :total="pagination.total"
-            @current-change="handleCurrentChange"
-            layout="prev, pager, next, jumper"
-            :background="true"
-        >
-        </el-pagination>
-    </div>
+    
 </template>
 
 <script lang="ts">
