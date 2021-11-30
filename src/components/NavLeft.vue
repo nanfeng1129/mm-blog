@@ -24,7 +24,7 @@
                     </el-icon>
                     <span style="margin-left: 10px">分类</span>
                 </div>
-                <div class="left-title-menu-index" :class="{active: isActive[3]}" @click="changeIsActive(3); jumpTo('/search')">
+                <div class="left-title-menu-index" :class="{active: isActive[3]}" @click="changeIsActive(3); changeVisible()">
                     <el-icon style="top: 2px">
                         <search />
                     </el-icon>
@@ -67,6 +67,7 @@
                 </div>
             </el-affix>
         </div>
+        <child-search :visible="visible"></child-search>
     </div>
 </template>
 <script lang="ts">
@@ -75,6 +76,7 @@ import { HomeFilled, CollectionTag, Collection, Search, Link } from '@element-pl
 import AvatarPic from '../assets/avatar.jpg'
 import { axiosPost } from '../utils/util'
 import { AXIOS_RES, RESP_CODE } from '../config/config'
+import ChildSearch from '../views/search.vue'
 
 export default defineComponent({
     components:{
@@ -83,6 +85,7 @@ export default defineComponent({
         Collection,
         Search,
         Link,
+        ChildSearch,
     },
     data(){
         return {
@@ -92,6 +95,7 @@ export default defineComponent({
             tagNum: 0,
             classNum: 0,
             blogNum:0,
+            visible: false,
         }
     },
     methods: {
@@ -107,6 +111,9 @@ export default defineComponent({
         },
         jumpTo(url: string){
             this.$router.push(url);
+        },
+        changeVisible(){
+            this.visible = true;
         }
     },
     watch:{
