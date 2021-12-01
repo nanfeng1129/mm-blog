@@ -51,6 +51,14 @@ const routes: Array<RouteRecordRaw> = [
                 title: '时间戳',
             }
         },
+        {
+            path: 'search',
+            name: 'search',
+            component: () => import('../views/search.vue'),
+            meta: {
+                title: '查找日志',
+            }
+        },
     ]
   },
   /* {
