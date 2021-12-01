@@ -15,6 +15,15 @@ export default defineComponent({
             title: ''
         };
     },
+    watch:{
+        '$route.query':{
+            handler(val){
+                this.title = val.title;
+                this.text = val.content;
+            },
+            deep: true,
+        }
+    },
     created(){
         this.text = this.$route.query.content as string;
         this.title = this.$route.query.title as string;

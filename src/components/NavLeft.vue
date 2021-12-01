@@ -24,7 +24,7 @@
                     </el-icon>
                     <span style="margin-left: 10px">分类</span>
                 </div>
-                <div class="left-title-menu-index" :class="{active: isActive[3]}" @click="changeIsActive(3); changeVisible()">
+                <div class="left-title-menu-index" :class="{active: isActive[3]}" @click="changeIsActive(3); changeVisible(true)">
                     <el-icon style="top: 2px">
                         <search />
                     </el-icon>
@@ -67,7 +67,7 @@
                 </div>
             </el-affix>
         </div>
-        <child-search :visible="visible"></child-search>
+        <child-search :visible="visible" @changeVisible="changeVisible"></child-search>
     </div>
 </template>
 <script lang="ts">
@@ -95,7 +95,7 @@ export default defineComponent({
             tagNum: 0,
             classNum: 0,
             blogNum:0,
-            visible: false,
+            visible: false as boolean,
         }
     },
     methods: {
@@ -112,8 +112,8 @@ export default defineComponent({
         jumpTo(url: string){
             this.$router.push(url);
         },
-        changeVisible(){
-            this.visible = true;
+        changeVisible(boo: boolean){
+            this.visible = boo;
         }
     },
     watch:{
